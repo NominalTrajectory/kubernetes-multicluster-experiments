@@ -53,7 +53,5 @@ resource "azurerm_kubernetes_cluster" "kme-cluster-1" {
       oms_agent {
           enabled = false
       }
-
     }
- 
 }
