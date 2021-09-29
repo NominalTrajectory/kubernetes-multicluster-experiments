@@ -14,7 +14,7 @@ This architecture can be valuable in a vast number of use-cases. Some of the mos
 The purpose of this project is to test the capabilities of Submariner and the multi-cluster multi-cloud architecture.
 
 ## Objectives
-- [x] Deploy a Kubernetes cluster in AKS (West Europe region)
+- [ ] Deploy a Kubernetes cluster in AKS (West Europe region)
 - [ ] Deploy a Kubernetes cluster in GCP (US East region)
 - [ ] Deploy a Kubernetes cluster in AWS (US West region)
 - [ ] Establish a secure multi-cluster (and multi-cloud) L3 network connection between the clusters using Submariner
