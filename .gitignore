@@ -35,3 +35,4 @@ terraform.rc
 
 # Secrets
 local_secrets
+.env
