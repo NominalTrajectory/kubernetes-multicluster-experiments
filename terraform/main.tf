@@ -14,25 +14,25 @@ provider "azurerm" {
 provider "google" {
 }
 
-# module "aks-cluster" {
-#   source = "./azure/modules/aks-cluster/"
-#   ssh_key = var.ssh_key
+module "aks-cluster" {
+  source = "./azure/modules/aks-cluster/"
+  ssh_key = var.ssh_key
+}
+
+# module "gcp-project" {
+#   source = "./gcp/modules/project/"
+#   gcp_project_name = var.gcp_project_name
+#   gcp_project_id = var.gcp_project_id
+#   gcp_org_id = var.gcp_org_id
+#   gcp_billing_account = var.gcp_billing_account
+#   gcp_enable_apis = var.gcp_enable_apis
 # }
 
-module "gcp-project" {
-  source = "./gcp/modules/project/"
-  gcp_project_name = var.gcp_project_name
-  gcp_project_id = var.gcp_project_id
-  gcp_org_id = var.gcp_org_id
-  gcp_billing_account = var.gcp_billing_account
-  gcp_enable_apis = var.gcp_enable_apis
-}
-
-module "gke_cluster" {
-  source = "./gcp/modules/gke-cluster/"
-  gcp_project_id = var.gcp_project_id
-  gcp_location = var.gcp_location
-}
+# module "gke_cluster" {
+#   source = "./gcp/modules/gke-cluster/"
+#   gcp_project_id = var.gcp_project_id
+#   gcp_location = var.gcp_location
+# }
 
 # module "test-service" {
 #   source = "./modules/test-service/"
