@@ -36,8 +36,8 @@ The example setup in this repository uses the following configuration:
 |--------------------|--------------|------------------------|--------------|------------------|--------------------|
 | Broker-USCentral   | Azure        | 192.168.1.0/24         | 10.42.0.0/16 | 10.43.0.0/16     | 10.43.0.10         |
 | Cluster-WestEurope | Azure        | 192.168.1.0/24         | 10.0.0.0/16  | 10.1.0.0/16      | 10.1.0.10          |
-| Cluster-USEast     | GCP          |                        |              |                  |                    |
-| Cluster-USWest     | AWS          |                        |              |                  |                    |
+| Cluster-USEast     | GCP          | 192.168.1.0/24         | 10.98.0.0/16 | 10.99.0.0/16     |                    |
+| Cluster-USWest     | AWS          | 192.168.1.0/24         | 10.4.0.0/16  | 10.5.0.0/16      |                    |
 
 
 ## References
