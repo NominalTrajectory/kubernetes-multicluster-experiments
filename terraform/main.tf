@@ -14,10 +14,37 @@ provider "azurerm" {
 provider "google" {
 }
 
+# AZURE MODULES
+
+module "main-rg" {
+  source = "./azure/modules/main-rg/"
+  azure_location = var.azure_location
+}
+
+module "submariner-broker-cluster" {
+  source = "./azure/modules/submariner-broker-cluster/"
+  ssh_key = var.ssh_key
+  azure_submariner_broker_location = var.azure_submariner_broker_location
+  rg_name = "${module.main-rg.rg_name}"
+}
+
 module "aks-cluster" {
   source = "./azure/modules/aks-cluster/"
   ssh_key = var.ssh_key
+  azure_location = var.azure_location
+  rg_name = "${module.main-rg.rg_name}"
 }
+
+# module "test-service" {
+#   source = "./azure/modules/test-service/"
+#   host = "${module.aks-cluster.host}"
+#   client_certificate = "${base64decode(module.aks-cluster.client_certificate)}"
+#   client_key = "${base64decode(module.aks-cluster.client_key)}"
+#   cluster_ca_certificate = "${base64decode(module.aks-cluster.cluster_ca_certificate)}"
+# }
+
+
+# GCP MODULES
 
 # module "gcp-project" {
 #   source = "./gcp/modules/project/"
@@ -33,12 +60,3 @@ module "aks-cluster" {
 #   gcp_project_id = var.gcp_project_id
 #   gcp_location = var.gcp_location
 # }
-
-# module "test-service" {
-#   source = "./modules/test-service/"
-#   host = "${module.aks-cluster.host}"
-#   client_certificate = "${base64decode(module.aks-cluster.client_certificate)}"
-#   client_key = "${base64decode(module.aks-cluster.client_key)}"
-#   cluster_ca_certificate = "${base64decode(module.aks-cluster.cluster_ca_certificate)}"
-# }
-

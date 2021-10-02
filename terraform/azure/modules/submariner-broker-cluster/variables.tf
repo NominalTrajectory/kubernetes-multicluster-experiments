@@ -1,4 +1,4 @@
-variable "azure_location" {
+variable "azure_submariner_broker_location" {
 }
 variable "ssh_key" {
 }

@@ -1,0 +1,2 @@
+variable "azure_location" {
+}
