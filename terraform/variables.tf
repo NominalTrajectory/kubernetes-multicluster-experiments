@@ -24,3 +24,6 @@ variable "gcp_org_id" {
 
 variable "gcp_enable_apis" {
 }
+
+variable "aws_region" {
+}
