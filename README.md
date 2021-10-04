@@ -1,5 +1,7 @@
 # Kubernetes multi-cluster connectivity using Submariner
 
+<img src="https://img.shields.io/badge/STATUS-Work--In--Progress-blueviolet?style=for-the-badge&logo=appveyor"/>
+
 ## Background
 
 The current trend within Kubernetes-based platforms shows that companies are no longer focusing on building large multi-tenant cluster. Instead, it is becoming common to build individual clusters specific to a region/cloud. In this scenario, inter-cluster connectivity plays a crucial role. 
@@ -36,8 +38,8 @@ The example setup in this repository uses the following configuration:
 |--------------------|--------------|------------------------|--------------|------------------|--------------------|
 | Broker-USCentral   | Azure        | 192.168.1.0/24         | 10.42.0.0/16 | 10.43.0.0/16     | 10.43.0.10         |
 | Cluster-WestEurope | Azure        | 192.168.1.0/24         | 10.0.0.0/16  | 10.1.0.0/16      | 10.1.0.10          |
-| Cluster-USEast     | GCP          | 192.168.1.0/24         | 10.98.0.0/16 | 10.99.0.0/16     |                    |
-| Cluster-USWest     | AWS          | 192.168.1.0/24         | 10.4.0.0/16  | 10.5.0.0/16      |                    |
+| Cluster-USEast     | GCP          | 192.168.1.0/24         | 10.98.0.0/16 | 10.99.0.0/16     | 10.99.0.10         |
+| Cluster-USWest     | AWS          | 192.168.1.0/24         | 10.4.0.0/16  | 10.5.0.0/16      | 10.5.0.10          |
 
 
 ## References
