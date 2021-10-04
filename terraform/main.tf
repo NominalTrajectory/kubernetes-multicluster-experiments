@@ -4,6 +4,15 @@ terraform {
       source = "hashicorp/azurerm"
       version = "2.78.0"
     }
+
+    google ={
+      source = "hashicorp/google"
+    }
+
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 3.0"
+    }
   }
 }
 
@@ -12,6 +21,10 @@ provider "azurerm" {
 }
 
 provider "google" {
+}
+
+provider "aws" {
+  region = var.aws_region
 }
 
 # AZURE MODULES
@@ -46,27 +59,44 @@ provider "google" {
 
 # GCP MODULES
 
-module "gcp-project" {
-  source = "./gcp/modules/project/"
-  gcp_project_name = var.gcp_project_name
-  gcp_project_id = var.gcp_project_id
-  gcp_org_id = var.gcp_org_id
-  gcp_billing_account = var.gcp_billing_account
-  gcp_enable_apis = var.gcp_enable_apis
-}
+# module "gcp-project" {
+#   source = "./gcp/modules/project/"
+#   gcp_project_name = var.gcp_project_name
+#   gcp_project_id = var.gcp_project_id
+#   gcp_org_id = var.gcp_org_id
+#   gcp_billing_account = var.gcp_billing_account
+#   gcp_enable_apis = var.gcp_enable_apis
+# }
 
-module "gcp-network" {
-  source = "./gcp/modules/network/"
-  gcp_location = var.gcp_location
-  gcp_project_id = var.gcp_project_id
+# module "gcp-network" {
+#   source = "./gcp/modules/network/"
+#   gcp_location = var.gcp_location
+#   gcp_project_id = var.gcp_project_id
   
-}
+# }
 
-module "gke-cluster" {
-  source = "./gcp/modules/gke-cluster/"
-  gcp_project_id = var.gcp_project_id
-  gcp_location = var.gcp_location
-  subnet_self_link = "${module.gcp-network.subnet_self_link}"
-}
+# module "gke-cluster" {
+#   source = "./gcp/modules/gke-cluster/"
+#   gcp_project_id = var.gcp_project_id
+#   gcp_location = var.gcp_location
+#   subnet_self_link = "${module.gcp-network.subnet_self_link}"
+# }
 
 # AWS MODULES
+
+module "aws-vpc" {
+  source = "./aws/modules/vpc/"
+}
+
+module "aws-sgs" {
+  source = "./aws/modules/sgs/"
+  vpc_id = "${module.aws-vpc.vpc_id}"
+  cidr_blocks = "${module.aws-vpc.private_subnets_cidr_blocks}"
+}
+
+module "eks-cluster" {
+  source = "./aws/modules/eks-cluster/"
+  vpc_id = "${module.aws-vpc.vpc_id}"
+  nodes_subnets = module.aws-vpc.private_subnets
+  main_sg_id = module.aws-sgs.main_sg_id
+}
